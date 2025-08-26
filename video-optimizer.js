@@ -135,7 +135,7 @@ class VideoOptimizer {
             if (this.networkSpeed === 'slow') {
                 return 'low';
             } else {
-                return 'webm';
+                return 'standard'; // На ПК используем MP4 в хорошем качестве
             }
         }
     }
@@ -148,7 +148,10 @@ class VideoOptimizer {
             } else if (quality === 'low' && source.dataset.srcLow) {
                 source.src = source.dataset.srcLow;
             } else if (quality === 'standard') {
-                // Оставляем текущий источник
+                // Для стандартного качества используем первый источник (MP4 в хорошем качестве)
+                if (source.type === 'video/mp4' && !source.dataset.srcLow) {
+                    // Оставляем текущий источник (MP4/pomidor.mp4)
+                }
             }
         });
     }
